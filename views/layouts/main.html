@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Time</title>
+    <!-- <link rel="stylesheet" href="/style/main.css?v=1"> -->
+    <link id="styles" rel="stylesheet" href="/style/main.css">
+</head>
+<body>
+    <div class="wrapper">
+        {{template "header" .}} <!--import partial-->
+        <h1>{{ .Title }}</h1>
+        <h2>{{ .Subtitle }}</h2>
+        {{embed}}
+    </div>
+</body>
+
+</html>
+
+<script id="main" src="/javascript/app.js"></script>
+<!-- 
+    el script genera un identificador único basado en la fecha y hora actual y 
+    lo agrega como un parámetro de consulta ("?t=") al final de las URLs de los archivos CSS y JavaScript. 
+    Esto asegura que, cada vez que se cargue la página, el navegador verá las URLs como diferentes, 
+    lo que evita el almacenamiento en caché de las versiones anteriores de los archivos y 
+    garantiza que siempre se carguen las últimas versiones actualizadas.
+ -->
+ <!-- This hack should only be used, locally, though. We do not want to have this behaviour in production. -->
+<script>
+    const timeStamp = Date.now()
+    const stylesheetLink = document.querySelector("link#styles")
+    const appScriptLink = document.querySelector("script#main")
+    stylesheetLink.href += `?t=${timeStamp}`
+    appScriptLink.src += `?t=${timeStamp}`
+</script>
