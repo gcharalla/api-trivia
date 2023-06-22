@@ -1,4 +1,4 @@
-# API-Trivia
+# API Trivia
 ***
 
 ## Screenshot
